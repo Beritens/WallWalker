@@ -1,0 +1,123 @@
+[gd_scene format=4 uid="uid://cbatrbi1cgoly"]
+
+[ext_resource type="Script" uid="uid://c6kxvfqr4ewu1" path="res://addons/rmsmartshape/shapes/shape_closed.gd" id="1_hokwi"]
+[ext_resource type="Script" uid="uid://bwcf4pjgprn0k" path="res://addons/rmsmartshape/shapes/point.gd" id="2_6ra5r"]
+[ext_resource type="Script" uid="uid://bo5f7qe27jfje" path="res://addons/rmsmartshape/shapes/point_array.gd" id="3_5vwr8"]
+[ext_resource type="Script" uid="uid://llobjh5hvry" path="res://addons/rmsmartshape/shapes/mesh.gd" id="4_8gbjj"]
+[ext_resource type="Script" uid="uid://mc8hrt0xxmjg" path="res://addons/rmsmartshape/shapes/mesh_cache.gd" id="5_2c1ag"]
+[ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="6_modao"]
+[ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="7_176r3"]
+[ext_resource type="Script" uid="uid://jxuqtqo1ubr4" path="res://scripts/PathGeneration.gd" id="8_vuhkc"]
+
+[sub_resource type="Resource" id="Resource_hokwi"]
+script = ExtResource("2_6ra5r")
+position = Vector2(44.443176, -40.271225)
+point_in = Vector2(-13.571129, 8.481949)
+point_out = Vector2(13.571129, -8.481949)
+
+[sub_resource type="Resource" id="Resource_6ra5r"]
+script = ExtResource("2_6ra5r")
+position = Vector2(81.20094, -39.714455)
+point_in = Vector2(-16.115707, -9.047417)
+point_out = Vector2(16.115707, 9.047417)
+
+[sub_resource type="Resource" id="Resource_5vwr8"]
+script = ExtResource("2_6ra5r")
+position = Vector2(86.290115, 0.06588745)
+point_in = Vector2(14.702042, -12.440201)
+point_out = Vector2(-14.702042, 12.440201)
+
+[sub_resource type="Resource" id="Resource_8gbjj"]
+script = ExtResource("2_6ra5r")
+position = Vector2(44.134827, 1.4795456)
+point_in = Vector2(20.639404, 12.722923)
+point_out = Vector2(-20.639404, -12.722923)
+
+[sub_resource type="Resource" id="Resource_2c1ag"]
+script = ExtResource("2_6ra5r")
+position = Vector2(44.443176, -40.271225)
+point_in = Vector2(-13.571129, 8.481949)
+point_out = Vector2(13.571129, -8.481949)
+
+[sub_resource type="Resource" id="Resource_modao"]
+script = ExtResource("3_5vwr8")
+_points = {
+0: SubResource("Resource_hokwi"),
+1: SubResource("Resource_6ra5r"),
+2: SubResource("Resource_5vwr8"),
+3: SubResource("Resource_8gbjj"),
+4: SubResource("Resource_2c1ag")
+}
+_point_order = PackedInt32Array(0, 1, 2, 3, 4)
+_constraints = {
+Vector2i(0, 4): 15
+}
+_next_key = 5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hokwi"]
+_surfaces = [{
+"aabb": AABB(31.305597, -46.56635, 0, 64.22541, 56.775238, 1e-05),
+"attribute_data": PackedByteArray("/////x+VVj6uIzTCH5VWPq4jNML/////GidnPgXVOMIaJ2c+BdU4wv////+seHc+8UM6wqx4dz7xQzrC/////zEihD51aTjCMSKEPnVpOML/////ZCKNPpI+M8JkIo0+kj4zwv/////iZqI+mtsewuJmoj6a2x7C/////5hMrT7Rqw/CmEytPtGrD8L/////ZtSxPrX/BsJm1LE+tf8Gwv////+OubU+TXP7wY65tT5Nc/vB/////5/3uD6Y4OfBn/e4Ppjg58H/////I4q7PpN008Ejirs+k3TTwf////+obL0+i1y+wahsvT6LXL7B/////7eavj7LxajBt5q+PsvFqMH/////4A+/PpzdksHgD78+nN2Swf////+sx74+m6J5wazHvj6bonnB/////6i9vT5MnE3BqL29PkycTcH/////YO27PuYCIsFg7bs+5gIiwf////9gUrk+/mHuwGBSuT7+Ye7A/////zbotT5bApvANui1PlsCm8D/////aaqxPhc4FcBpqrE+FzgVwP////+KlKw+APCGPYqUrD4A8IY9/////4POmD5gX+pAg86YPmBf6kD/////vt2PPhlbFUG+3Y8+GVsVQf/////saIs+PKoeQexoiz48qh5B/////8Lghj6bVyNBwuCGPptXI0H/////+TSCPiVNI0H5NII+JU0jQf////+Pqno+zXQeQY+qej7NdB5B/////wpyZT4/AgZBCnJlPj8CBkH/////EIowPsBhvT8QijA+wGG9P/////8IWiI+pSl+vwhaIj6lKX6//////6ipFj5vpGfAqKkWPm+kZ8D/////NFgNPvPfy8A0WA0+89/LwP/////vRAY+4n8Twe9EBj7ifxPB/////x5PAT6DIULBHk8BPoMhQsH/////Eaz8PYpdccERrPw9il1xwf/////dcfo9Ul6Qwd1x+j1SXpDB/////zCu+z3A46fBMK77PcDjp8H/////xw8APmQDv8HHDwA+ZAO/wf////9DwgM+mYHVwUPCAz6ZgdXB/////87NCD6wIuvBzs0IPrAi68H/////rREPPgar/8GtEQ8+Bqv/wf////96vx4+X0ESwnq/Hj5fQRLC/////9DFMT68FSHC0MUxPrwVIcI="),
+"format": 34359742527,
+"index_count": 126,
+"index_data": PackedByteArray("AAABAAIAAgADAAQABAAFAAYABgAHAAgACAAJAAoACgALAAwADAANAA4ADgAPABAAEAARABIAEgATABQAFAAVABYAFgAXABgAGAAZABoAGgAbABwAHAAdAB4AHgAfACAAIAAhACIAIgAjACQAJAAlACYAJgAnACgAAAACAAQABAAGAAgACAAKAAwADAAOABAAEAASABQAFAAWABgAGAAaABwAHAAeACAAIAAiACQAJAAmACgAAAAEAAgACAAMABAAEAAUABgAGAAcACAAIAAkACgAAAAIABAAEAAYACAAIAAoACkAAAAQACAAAAAgACkAKQAqACoAKgAAACkA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 43,
+"vertex_data": PackedByteArray("H5VWQq4jNMIAAAAAGidnQgXVOMIAAAAArHh3QvFDOsIAAAAAMSKEQnVpOMIAAAAAZCKNQpI+M8IAAAAA4maiQprbHsIAAAAAmEytQtGrD8IAAAAAZtSxQrX/BsIAAAAAjrm1Qk1z+8EAAAAAn/e4Qpjg58EAAAAAI4q7QpN008EAAAAAqGy9QotcvsEAAAAAt5q+QsvFqMEAAAAA4A+/QpzdksEAAAAArMe+QpuiecEAAAAAqL29QkycTcEAAAAAYO27QuYCIsEAAAAAYFK5Qv5h7sAAAAAANui1QlsCm8AAAAAAaaqxQhc4FcAAAAAAipSsQgDwhj0AAAAAg86YQmBf6kAAAAAAvt2PQhlbFUEAAAAA7GiLQjyqHkEAAAAAwuCGQptXI0EAAAAA+TSCQiVNI0EAAAAAj6p6Qs10HkEAAAAACnJlQj8CBkEAAAAAEIowQsBhvT8AAAAACFoiQqUpfr8AAAAAqKkWQm+kZ8AAAAAANFgNQvPfy8AAAAAA70QGQuJ/E8EAAAAAHk8BQoMhQsEAAAAAEaz8QYpdccEAAAAA3XH6QVJekMEAAAAAMK77QcDjp8EAAAAAxw8AQmQDv8EAAAAAQ8IDQpmB1cEAAAAAzs0IQrAi68EAAAAArREPQgar/8EAAAAAer8eQl9BEsIAAAAA0MUxQrwVIcIAAAAA/////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////78=")
+}]
+
+[sub_resource type="Gradient" id="Gradient_4amwq"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3w526"]
+gradient = SubResource("Gradient_4amwq")
+
+[sub_resource type="Resource" id="Resource_176r3"]
+script = ExtResource("4_8gbjj")
+texture = SubResource("GradientTexture1D_3w526")
+mesh = SubResource("ArrayMesh_hokwi")
+z_index = -10
+
+[sub_resource type="Resource" id="Resource_41adg"]
+script = ExtResource("5_2c1ag")
+meshes = Array[ExtResource("4_8gbjj")]([SubResource("Resource_176r3")])
+
+[sub_resource type="Resource" id="Resource_dnkg1"]
+script = ExtResource("7_176r3")
+fill_textures = Array[Texture2D]([SubResource("GradientTexture1D_3w526")])
+
+[sub_resource type="Curve2D" id="Curve2D_hokwi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64.03374, -81.49927, 0, 0, 0, 0, 66.10691, -81.37073, 0, 0, 0, 0, 69.38656, -81.01159, 0, 0, 0, 0, 71.51233, -80.67677, 0, 0, 0, 0, 74.43439, -80.08803, 0, 0, 0, 0, 76.63552, -79.54608, 0, 0, 0, 0, 79.121, -78.83581, 0, 0, 0, 0, 81.42026, -78.08587, 0, 0, 0, 0, 84.3065, -77.00164, 0, 0, 0, 0, 89.29049, -74.87441, 0, 0, 0, 0, 91.83447, -73.66538, 0, 0, 0, 0, 97.48425, -70.69596, 0, 0, 0, 0, 99.78425, -69.37352, 0, 0, 0, 0, 102.65872, -67.57248, 0, 0, 0, 0, 105.5196, -65.5747, 0, 0, 0, 0, 108.09379, -63.57908, 0, 0, 0, 0, 110.85014, -61.20285, 0, 0, 0, 0, 113.11538, -59.03477, 0, 0, 0, 0, 115.71391, -56.26215, 0, 0, 0, 0, 117.66148, -53.94374, 0, 0, 0, 0, 120.0384, -50.76422, 0, 0, 0, 0, 121.65962, -48.31758, 0, 0, 0, 0, 123.74044, -44.73306, 0, 0, 0, 0, 125.02661, -42.18032, 0, 0, 0, 0, 126.72787, -38.21179, 0, 0, 0, 0, 127.67029, -35.57506, 0, 0, 0, 0, 128.90468, -31.27022, 0, 0, 0, 0, 129.49464, -28.57161, 0, 0, 0, 0, 130.1806, -24.01117, 0, 0, 0, 0, 130.40944, -21.2728, 0, 0, 0, 0, 130.48528, -16.56954, 0, 0, 0, 0, 130.34425, -13.81353, 0, 0, 0, 0, 129.78223, -9.10808, 0, 0, 0, 0, 129.26266, -6.35654, 0, 0, 0, 0, 128.07988, -1.79933, 0, 0, 0, 0, 127.17308, 0.92562, 0, 0, 0, 0, 125.43328, 5.19292, 0, 0, 0, 0, 124.13055, 7.86917, 0, 0, 0, 0, 121.93522, 11.73422, 0, 0, 0, 0, 120.22787, 14.33964, 0, 0, 0, 0, 117.69956, 17.7314, 0, 0, 0, 0, 115.57885, 20.24389, 0, 0, 0, 0, 112.84343, 23.13394, 0, 0, 0, 0, 110.30072, 25.53138, 0, 0, 0, 0, 108.17225, 27.38205, 0, 0, 0, 0, 102.98633, 31.53633, 0, 0, 0, 0, 100.38975, 33.42749, 0, 0, 0, 0, 95.68889, 36.53146, 0, 0, 0, 0, 92.28449, 38.51371, 0, 0, 0, 0, 90.03645, 39.65837, 0, 0, 0, 0, 86.86319, 41.08029, 0, 0, 0, 0, 84.64098, 41.94623, 0, 0, 0, 0, 80.77584, 43.19926, 0, 0, 0, 0, 78.54768, 43.78108, 0, 0, 0, 0, 74.18316, 44.62888, 0, 0, 0, 0, 71.91721, 44.92121, 0, 0, 0, 0, 67.40062, 45.20887, 0, 0, 0, 0, 65.0651, 45.20631, 0, 0, 0, 0, 60.78754, 44.93921, 0, 0, 0, 0, 58.35064, 44.6364, 0, 0, 0, 0, 54.60322, 43.96204, 0, 0, 0, 0, 52.03312, 43.35357, 0, 0, 0, 0, 48.94334, 42.47046, 0, 0, 0, 0, 46.20825, 41.55096, 0, 0, 0, 0, 42.77299, 40.19031, 0, 0, 0, 0, 36.68056, 37.39668, 0, 0, 0, 0, 33.82163, 35.92317, 0, 0, 0, 0, 26.68752, 31.8208, 0, 0, 0, 0, 24.12055, 30.19242, 0, 0, 0, 0, 20.57364, 27.72005, 0, 0, 0, 0, 17.19102, 25.03764, 0, 0, 0, 0, 14.26878, 22.41105, 0, 0, 0, 0, 11.75509, 19.91018, 0, 0, 0, 0, 10.51823, 18.54816, 0, 0, 0, 0, 8.91542, 16.65217, 0, 0, 0, 0, 7.82274, 15.26251, 0, 0, 0, 0, 6.31029, 13.18652, 0, 0, 0, 0, 5.35778, 11.77288, 0, 0, 0, 0, 3.96672, 9.53033, 0, 0, 0, 0, 3.15041, 8.09634, 0, 0, 0, 0, 1.91085, 5.71003, 0, 0, 0, 0, 1.22672, 4.25933, 0, 0, 0, 0, 0.16355, 1.75737, 0, 0, 0, 0, -0.39238, 0.29361, 0, 0, 0, 0, -1.26021, -2.29033, 0, 0, 0, 0, -1.69193, -3.76352, 0, 0, 0, 0, -2.35297, -6.3925, 0, 0, 0, 0, -2.66449, -7.87147, 0, 0, 0, 0, -3.11555, -10.50934, 0, 0, 0, 0, -3.31087, -11.99044, 0, 0, 0, 0, -3.55623, -14.60381, 0, 0, 0, 0, -3.63933, -16.08342, 0, 0, 0, 0, -3.68932, -18.64225, 0, 0, 0, 0, -3.6642, -20.11672, 0, 0, 0, 0, -3.53382, -22.59691, 0, 0, 0, 0, -3.40449, -24.0626, 0, 0, 0, 0, -2.91127, -27.59018, 0, 0, 0, 0, -2.35591, -30.48063, 0, 0, 0, 0, -1.23401, -34.80717, 0, 0, 0, 0, -0.30971, -37.61879, 0, 0, 0, 0, 1.22133, -41.48505, 0, 0, 0, 0, 2.4826, -44.18871, 0, 0, 0, 0, 4.32483, -47.62422, 0, 0, 0, 0, 5.89111, -50.19079, 0, 0, 0, 0, 7.98578, -53.24676, 0, 0, 0, 0, 9.8251, -55.6471, 0, 0, 0, 0, 12.14913, -58.37797, 0, 0, 0, 0, 14.22954, -60.58296, 0, 0, 0, 0, 16.78919, -63.03441, 0, 0, 0, 0, 19.07871, -65.01491, 0, 0, 0, 0, 21.90368, -67.2163, 0, 0, 0, 0, 24.37035, -68.94318, 0, 0, 0, 0, 26.93107, -70.57511, 0, 0, 0, 0, 31.7459, -73.35752, 0, 0, 0, 0, 34.85426, -74.95241, 0, 0, 0, 0, 39.24188, -76.93362, 0, 0, 0, 0, 42.70388, -78.28056, 0, 0, 0, 0, 44.79441, -78.96859, 0, 0, 0, 0, 47.68315, -79.78383, 0, 0, 0, 0, 49.73518, -80.26899, 0, 0, 0, 0, 52.99617, -80.87843, 0, 0, 0, 0, 55.03247, -81.15988, 0, 0, 0, 0, 58.50873, -81.46474, 0, 0, 0, 0, 60.55208, -81.54161, 0, 0, 0, 0, 64.03374, -81.49927)
+}
+point_count = 125
+
+[node name="SS2D_Shape_Closed" type="Node2D" unique_id=2015809789]
+script = ExtResource("1_hokwi")
+_points = SubResource("Resource_modao")
+_mesh_cache = SubResource("Resource_41adg")
+shape_material = SubResource("Resource_dnkg1")
+collision_polygon_node_path = NodePath("StaticBody2D/CollisionPolygon2D")
+metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
+metadata/_edit_group_ = true
+
+[node name="@ColorRect@31546" type="ColorRect" parent="." unique_id=1198258330]
+modulate = Color(1, 1, 1, 0)
+offset_left = 31.305597
+offset_top = -46.56635
+offset_right = 95.531006
+offset_bottom = 10.208889
+metadata/__ss2d_click_rect__ = true
+
+[node name="Path2D" type="Path2D" parent="." unique_id=913315704]
+curve = SubResource("Curve2D_hokwi")
+script = ExtResource("8_vuhkc")
+offset_distance = 35.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=136596473 groups=["walkable"]]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1139516090 groups=["walkable"]]
+visible = false
+polygon = PackedVector2Array(44.443176, -40.271225, 53.645626, -45.034843, 57.788185, -46.208027, 61.867844, -46.56635, 66.06678, -46.102985, 70.56717, -44.811104, 81.20094, -39.714455, 86.6496, -35.91779, 88.91484, -33.749714, 90.86241, -31.4313, 92.483635, -28.984665, 93.7698, -26.431921, 94.71222, -23.795187, 95.30218, -21.096579, 95.531006, -18.358208, 95.389984, -15.602199, 94.87042, -12.850658, 93.96362, -10.125708, 92.66089, -7.449462, 90.95354, -4.8440375, 88.83283, -2.3315485, 86.290115, 0.06588745, 76.40334, 7.3241425, 71.93309, 9.334741, 69.704926, 9.916561, 67.43898, 10.208888, 65.10346, 10.206334, 62.66656, 9.903516, 57.361366, 8.375548, 44.134827, 1.4795456, 40.58792, -0.99282295, 37.66568, -3.6194112, 35.336136, -6.3710876, 33.567318, -9.218721, 32.327263, -12.133182, 31.584017, -15.085337, 31.305597, -18.046055, 31.460052, -20.986206, 32.015408, -23.876656, 32.93971, -26.68828, 34.20098, -29.391937, 35.76726, -31.958508, 39.68699, -36.56384)

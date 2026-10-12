@@ -1,0 +1,10 @@
+# Godot 4 generated files
+.godot/
+/new-game-project/android/
+export_credentials.cfg
+
+# Exported builds
+/output/
+
+# Local IDE settings
+.idea/

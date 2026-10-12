@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://be8qbmt0fe144"]
+
+[ext_resource type="Texture2D" uid="uid://bo5gsxepxkras" path="res://art/playerGrey_up1.png" id="1_dqkch"]
+[ext_resource type="Texture2D" uid="uid://cyb5gexjgew6b" path="res://art/playerGrey_up2.png" id="2_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://c1bhrh5wjgqje" path="res://art/playerGrey_walk1.png" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://dqe0kpub7ojxp" path="res://art/playerGrey_walk2.png" id="4_fjrip"]
+[ext_resource type="Script" uid="uid://dwuyakkjslwon" path="res://scripts/movement.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://drs0nto6g63l6" path="res://scripts/playerAnimation.gd" id="6_tuyoq"]
+[ext_resource type="Script" uid="uid://dlv61fuf37yjy" path="res://scripts/collision_handler.gd" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://b0uq4x3ljf74u" path="res://scripts/follow_handler.gd" id="8_smehm"]
+[ext_resource type="Script" uid="uid://ovtngbbfnjbk" path="res://scripts/death_handler.gd" id="8_ur7pv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yo5px"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dqkch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qlg0r")
+}],
+"loop": 1,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tuyoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fjrip")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yk7ts"]
+radius = 28.0
+
+[node name="Player" type="Node2D" unique_id=1003271293]
+
+[node name="PlayerObject" type="CharacterBody2D" parent="." unique_id=1624797]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerObject" unique_id=7927655]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_yo5px")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerObject" unique_id=574381932]
+shape = SubResource("CircleShape2D_yk7ts")
+
+[node name="Movement" type="Node" parent="PlayerObject" unique_id=499309827 node_paths=PackedStringArray("followHandler", "target", "source")]
+script = ExtResource("5_qlg0r")
+followHandler = NodePath("../../FollowHandler")
+target = NodePath("../../FollowHandler/PathFollow2D")
+source = NodePath("../CollisionHandler")
+attach_signal = &"hit_walkable"
+
+[node name="Animation" type="Node" parent="PlayerObject" unique_id=1496632230]
+script = ExtResource("6_tuyoq")
+
+[node name="CollisionHandler" type="Node" parent="PlayerObject" unique_id=1229602216 node_paths=PackedStringArray("source")]
+script = ExtResource("7_fjrip")
+source = NodePath("../Movement")
+detach_signal = &"detach"
+
+[node name="DeathHandler" type="Node" parent="PlayerObject" unique_id=773841031 node_paths=PackedStringArray("source")]
+script = ExtResource("8_ur7pv")
+source = NodePath("../CollisionHandler")
+death_signal = &"hit_death"
+
+[node name="FollowHandler" type="Node" parent="." unique_id=349085420 node_paths=PackedStringArray("source", "pathFollow", "body")]
+script = ExtResource("8_smehm")
+source = NodePath("../PlayerObject/CollisionHandler")
+attach_signal = &"hit_walkable"
+pathFollow = NodePath("PathFollow2D")
+pathFollowSpeed = 400.0
+body = NodePath("../PlayerObject")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FollowHandler" unique_id=1141063561]
