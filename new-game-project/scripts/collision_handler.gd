@@ -13,6 +13,8 @@ signal hit_death(collider: Object)
 
 var current: StaticBody2D
 
+var last_vel: Vector2 = Vector2.ZERO
+
 
 
 # if in freefall
@@ -35,11 +37,12 @@ func _physics_process(delta: float) -> void:
 		if collider.is_in_group("walkable"):
 			if collider != current:
 				current = collider
-				hit_walkable.emit(collider)
+				hit_walkable.emit(collider, last_vel)
 				current.set_collision_layer_value(1, false) 
 		if collider.is_in_group("death"):
 			print("test")
 			hit_death.emit(collider)
+	last_vel = body.velocity
 			
 func _on_detach() -> void:
 	current.set_collision_layer_value(1, true) 

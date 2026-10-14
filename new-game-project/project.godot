@@ -14,7 +14,7 @@ ss2d/version="3.3.2"
 
 [application]
 
-config/name="New Game Project"
+config/name="WallWalker"
 run/main_scene="uid://dsbst1y8nsp0s"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/show_image=false
@@ -24,19 +24,15 @@ config/icon="res://icon.svg"
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 
-[display]
-
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
-
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg")
+enabled=PackedStringArray("res://addons/drawingodot/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg")
 
 [global_group]
 
 walkable=""
 death=""
+player=""
 
 [input]
 
@@ -62,6 +58,7 @@ jump={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

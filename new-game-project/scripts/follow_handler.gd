@@ -8,12 +8,16 @@ class_name FollowHandler
 
 var attached = false
 
+var jump_vel := Vector2.RIGHT
+const JUMP_VELOCITY = -400.0
+
 @export var pathFollowSpeed: float = 10.0
 @export var body: CharacterBody2D
 
+
 var direction = -1.0
 
-var jump_vector = Vector2.UP
+#var jump_vector = Vector2.UP
 
 
 
@@ -43,7 +47,7 @@ func _process(delta: float) -> void:
 	if attached:
 		pathFollow.progress += direction * delta * pathFollowSpeed
 
-func _on_attach(collider: Object) -> void:
+func _on_attach(collider: Object, vel: Vector2) -> void:
 	
 	var path = collider.get_parent().get_node("Path2D") as Path2D
 	var local_point = path.to_local(body.global_position)
@@ -54,12 +58,24 @@ func _on_attach(collider: Object) -> void:
 	pathFollow.reparent(path)
 	pathFollow.progress = progress
 	
-	var up = pathFollow.global_transform.y.normalized()
 	
-	var dot = up.dot(jump_vector)
 	
-	if dot < -0.5:
-		direction *= -1.0
+	
+	var right = pathFollow.global_transform.x.normalized()
+	var dir = jump_vel.normalized()
+	
+	
+	if dir.dot(vel.normalized()) < -0.0:
+		dir = vel.normalized()
+		
+	
+	var dot = right.dot(-dir)
+	 
+	
+	if dot < 0.0:
+		direction = 1.0
+	else:
+		direction = -1.0
 	
 
 	attached = true  
@@ -68,6 +84,8 @@ func is_attached() -> bool:
 	return attached
 	
 func detach() -> void:
-	var up = pathFollow.global_transform.y.normalized()
-	jump_vector = up
+	var up = pathFollow.global_transform.y.normalized() * JUMP_VELOCITY
+	var right = pathFollow.global_transform.x.normalized() * direction * pathFollowSpeed
+	var dir = (up + right)
+	jump_vel = dir
 	attached = false

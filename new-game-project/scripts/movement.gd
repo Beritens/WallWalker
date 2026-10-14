@@ -5,7 +5,7 @@ extends Node
 @export var followHandler: FollowHandler
 @export var target: PathFollow2D
 
-@onready var sprite: AnimatedSprite2D = $"../AnimatedSprite2D"
+@onready var sprite: Node2D = $"../Art"
 
 
 const SPEED = 300.0
@@ -93,5 +93,5 @@ func _physics_process(delta: float) -> void:
 	
 	#body.move_and_slide()
 	
-func _on_attach(collider: Object) -> void:
+func _on_attach(collider: Object, vel: Vector2) -> void:
 	body.velocity = Vector2.ZERO
