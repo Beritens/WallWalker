@@ -1,5 +1,5 @@
 extends Node
-
+class_name CollisionHandler
 
 @onready var body: CharacterBody2D = get_parent()
 

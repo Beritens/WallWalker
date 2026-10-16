@@ -20,7 +20,7 @@ position = Vector2(540, 321)
 script = ExtResource("1_noyds")
 priority = 1
 follow_mode = 1
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.78, 0.78)
 tween_resource = SubResource("Resource_wrgg1")
 follow_damping = true
 draw_limits = true
@@ -29,7 +29,7 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 [node name="Camera2D2" type="Camera2D" parent="Node2D" unique_id=1248618984]
 top_level = true
 position = Vector2(540, 321)
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.78, 0.78)
 editor_draw_limits = true
 
 [node name="PhantomCameraHost" type="Node" parent="Node2D/Camera2D2" unique_id=60607359]
