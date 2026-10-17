@@ -15,7 +15,7 @@ ss2d/version="3.3.2"
 [application]
 
 config/name="WallWalker"
-run/main_scene="uid://dsbst1y8nsp0s"
+run/main_scene="uid://ols282yd3o5e"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -62,3 +62,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.13555199, 0.24070248, 0.356922, 1)

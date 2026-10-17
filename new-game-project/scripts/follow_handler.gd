@@ -12,6 +12,8 @@ var jump_vel := Vector2.RIGHT
 const JUMP_VELOCITY = -400.0
 
 @export var pathFollowSpeed: float = 10.0
+@export var slowdownSmoothing: float = 0.5
+var currentSpeed:float = 10.0
 @export var body: CharacterBody2D
 
 
@@ -44,10 +46,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_left"):
 		direction *= -1.0
+		currentSpeed = pathFollowSpeed
 	if attached:
-		pathFollow.progress += direction * delta * pathFollowSpeed
+		pathFollow.progress += direction * delta * currentSpeed
+		var weight := 1.0 - exp(-slowdownSmoothing * delta)
+		currentSpeed = lerpf(currentSpeed, pathFollowSpeed, weight)
 
 func _on_attach(collider: Object, vel: Vector2) -> void:
+	
+	
 	
 	var path = collider.get_parent().get_node("Path2D") as Path2D
 	var local_point = path.to_local(body.global_position)
@@ -63,6 +70,9 @@ func _on_attach(collider: Object, vel: Vector2) -> void:
 	
 	var right = pathFollow.global_transform.x.normalized()
 	var dir = jump_vel.normalized()
+	
+	var speed = right.dot(vel)
+	currentSpeed = max(pathFollowSpeed, abs(speed))
 	
 	
 	if dir.dot(vel.normalized()) < -0.0:
@@ -85,7 +95,7 @@ func is_attached() -> bool:
 	
 func detach() -> void:
 	var up = pathFollow.global_transform.y.normalized() * JUMP_VELOCITY
-	var right = pathFollow.global_transform.x.normalized() * direction * pathFollowSpeed
+	var right = pathFollow.global_transform.x.normalized() * direction * currentSpeed
 	var dir = (up + right)
 	jump_vel = dir
 	attached = false

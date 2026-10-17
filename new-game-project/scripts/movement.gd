@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		var up = target.global_transform.y.normalized()
 		
 		body.velocity = Vector2.ZERO
-		body.velocity += right * followHandler.pathFollowSpeed * followHandler.direction
+		body.velocity += right * followHandler.currentSpeed * followHandler.direction
 		body.velocity += up * JUMP_VELOCITY
 		detach.emit()
 	

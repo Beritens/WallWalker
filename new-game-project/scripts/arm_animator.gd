@@ -39,8 +39,8 @@ func _process(delta: float) -> void:
 	var middle_alt := to_local(arm_middle_alt.global_position)
 	var p3 := to_local(arm_end.global_position)
 	
-	var vec := (p0 - body.global_position).normalized()
-	var vec2 := (p3 - body.global_position).normalized()
+	var vec := (base.global_position - body.global_position).normalized()
+	var vec2 := (arm_end.global_position - body.global_position).normalized()
 	
 	var curr_side = sign(vec.cross(vec2))
 	
