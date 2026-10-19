@@ -51,6 +51,7 @@ func _on_parent_points_change() -> void:
 			distance += resolution
 
 		# Always include the endpoint.
-		sampled_points.append(_curve.sample_baked(length, true))
+		if(not closed):
+			sampled_points.append(_curve.sample_baked(length, true))
 
 	points = sampled_points

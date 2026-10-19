@@ -19,7 +19,11 @@ extends Node2D
 @export var ikEndLeft: PathFollow2D
 @export var ikEndRight: PathFollow2D
 
-var groundPath: SS2D_Shape = null
+@export var forwardFoot := 70.0
+@export var backwardFoot := 40.0
+@export var fooDistance:= 50.0
+
+var groundPath: Path2D = null
 var right_foot_active = true
 var right_foot_was_active = true
 
@@ -41,19 +45,12 @@ func _physics_process(_delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	ikEndLeft.progress_ratio = 1.0
-	ikEndLeft.progress_ratio = 1.0
 	if not follow_handler.attached:
 		groundPath = null
 		main.global_position = _previous_body_position.lerp(
 			_current_body_position, Engine.get_physics_interpolation_fraction())
 		
-		suctionCupLeft.global_position = ikEndLeft.global_position
-		suctionCupLeft.global_rotation = ikEndLeft.global_rotation -PI / 2.0
 		
-		
-		suctionCupRight.global_position = ikEndRight.global_position
-		suctionCupRight.global_rotation = ikEndLeft.global_rotation -PI / 2.0
 	else:
 		
 		
@@ -71,12 +68,12 @@ func _process(delta: float) -> void:
 			groundPath = mainFollow.get_parent().get_parent()
 			
 		
-		rightFollowTarget.progress = mainFollow.progress + (70.0 if follow_handler.direction > 0.0 else -10.0)
-		leftFollowTarget.progress = mainFollow.progress + (-70.0 if follow_handler.direction < 0.0 else 10.0)
+		rightFollowTarget.progress = mainFollow.progress + (forwardFoot if follow_handler.direction > 0.0 else -backwardFoot)
+		leftFollowTarget.progress = mainFollow.progress + (-forwardFoot if follow_handler.direction < 0.0 else backwardFoot)
 		
-		if (rightFollow.global_position - rightFollowTarget.global_position).length() > 40.0 and not right_foot_active:
+		if (rightFollow.global_position - rightFollowTarget.global_position).length() > fooDistance and not right_foot_active:
 			right_foot_active = true
-		elif (leftFollow.global_position - leftFollowTarget.global_position).length() > 40.0 and right_foot_active:
+		elif (leftFollow.global_position - leftFollowTarget.global_position).length() > fooDistance and right_foot_active:
 			right_foot_active = false
 		
 		print(right_foot_active)
@@ -105,7 +102,7 @@ func _process(delta: float) -> void:
 		var normalL = leftFollow.global_transform.y
 		
 		if(groundPath != null):
-			var curve: Curve2D = groundPath.get_curve()
+			var curve: Curve2D = groundPath.curve
 			var local_point = groundPath.to_local(rightFollow.global_position)
 			var progressR = curve.get_closest_offset(local_point)
 			
@@ -125,14 +122,22 @@ func _process(delta: float) -> void:
 		ikLeft.global_position = global_positionL + normalL * 10.0
 		ikRight.global_position = global_positionR + normalR * 10.0
 		
-		suctionCupLeft.global_position = ikEndLeft.global_position
+	_update_suction_cups.call_deferred()
+	
+		
+func _update_suction_cups() -> void:
+	ikEndLeft.progress_ratio = 1.0
+	ikEndRight.progress_ratio = 1.0
+
+	suctionCupLeft.global_position = ikEndLeft.global_position
+	suctionCupRight.global_position = ikEndRight.global_position
+
+	if follow_handler.attached:
 		suctionCupLeft.global_rotation = leftFollow.global_rotation
-		
-		
-		suctionCupRight.global_position = ikEndRight.global_position
 		suctionCupRight.global_rotation = rightFollow.global_rotation
-		
-		
+	else:
+		suctionCupLeft.global_rotation = ikEndLeft.global_rotation - PI / 2.0
+		suctionCupRight.global_rotation = ikEndRight.global_rotation - PI / 2.0
 
 
 	

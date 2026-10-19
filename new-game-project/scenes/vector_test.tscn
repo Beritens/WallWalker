@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_noyds"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_mfcld"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_jibvq"]
-[ext_resource type="PackedScene" uid="uid://dsbst1y8nsp0s" path="res://scenes/test.tscn" id="4_66lb6"]
+[ext_resource type="PackedScene" uid="uid://74x1e42grr5d" path="res://scenes/test2.tscn" id="5_mfcld"]
 
 [sub_resource type="Resource" id="Resource_wrgg1"]
 script = ExtResource("2_mfcld")
@@ -38,4 +38,4 @@ process_physics_priority = 300
 script = ExtResource("3_jibvq")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="Level1" parent="." unique_id=651897606 instance=ExtResource("4_66lb6")]
+[node name="Node2D2" parent="." unique_id=1331820805 instance=ExtResource("5_mfcld")]

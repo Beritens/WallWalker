@@ -92,14 +92,18 @@ modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_f1ej7")
 [sub_resource type="Curve2D" id="Curve2D_f1ej7"]
 bake_interval = 0.5
 _data = {
-"points": PackedVector2Array(-15.639719, 3.3919399, 18.853718, 6.673631, 30.158047, -1.7250681, 14.684223, -13.578426, 2.8851168, 18.775177, 35.369915, 23.590004)
+"points": PackedVector2Array(-15.639719, 3.3919399, -0.24368668, 19.998512, 30.158047, -1.7250681, 0.24368477, -19.998516, 2.8851168, 18.775177, 29.54883, 48.27122)
 }
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_a8ls1"]
+_data = [Vector2(0, 0.31479362), 0.0, 0.033303108, 1, 1, Vector2(0.044444267, 0.31627375), 0.033303108, 0.0, 1, 1, Vector2(0.088889256, 0.31627375), 0.0, 0.0, 1, 1, Vector2(0.15555602, 0.31627375), 0.0, 0.003662144, 1, 1, Vector2(0.22222206, 0.3165179), 0.003662144, 0.002918231, 1, 1, Vector2(0.31111133, 0.3167773), 0.002918231, 0.024307808, 1, 1, Vector2(0.42222235, 0.31947815), 0.024307808, 0.0, 1, 1, Vector2(0.53333336, 0.31947815), 0.0, -0.018425403, 1, 1, Vector2(0.6666669, 0.31702143), -0.018425403, -0.122110754, 1, 1, Vector2(0.7999997, 0.30074006), -0.122110754, -0.49954033, 1, 1, Vector2(0.88888896, 0.2563363), -0.49954033, 0.26440185, 1, 1, Vector2(1, 0.28571427), 0.26440185, 0.0, 1, 1]
+point_count = 12
 
 [sub_resource type="Curve2D" id="Curve2D_jej6c"]
 bake_interval = 0.5
 _data = {
-"points": PackedVector2Array(-15.639719, 3.3919399, -18.377762, 7.8901114, -33.841953, -1.7250681, -11.177162, -16.585005, 2.8851168, 18.775177, -42.842705, 28.868828)
+"points": PackedVector2Array(-15.639719, 3.3919399, 0.21541214, 19.99884, -33.841953, -1.7250681, -0.21541214, -19.99884, 2.8851168, 18.775177, -33.303425, 48.272034)
 }
 point_count = 2
 
@@ -460,16 +464,19 @@ leftFollowTarget = NodePath("leftFootFollowTarget")
 body = NodePath("../PlayerObject")
 suctionCupLeft = NodePath("Arms/Suction Cup")
 suctionCupRight = NodePath("Arms/Suction Cup2")
-ikEndLeft = NodePath("Arms/Path2D2/PathFollow2D")
-ikEndRight = NodePath("Arms/Path2D/PathFollow2D")
+ikEndLeft = NodePath("Arms/Path2D2/FootAnchor")
+ikEndRight = NodePath("Arms/Path2D/FootAnchor")
+forwardFoot = 80.0
+backwardFoot = -10.0
+fooDistance = 35.0
 
 [node name="IK Target" type="Node2D" parent="Visuals" unique_id=1539206622]
 
 [node name="FootLTarget" type="Node2D" parent="Visuals/IK Target" unique_id=2145103183]
-position = Vector2(-43.31807, 29.24213)
+position = Vector2(-33.725605, 53.58301)
 
 [node name="FootRTarget" type="Node2D" parent="Visuals/IK Target" unique_id=22504238]
-position = Vector2(34.894554, 23.963306)
+position = Vector2(29.019173, 53.10042)
 
 [node name="Body" type="Skeleton2D" parent="Visuals" unique_id=606057165]
 position = Vector2(-2.3173141, -1.3517647)
@@ -554,15 +561,134 @@ arm_end = NodePath("../../Body/Main/RightSide/RightLeg1/RightLeg2")
 arm_middle_alt = NodePath("../../Body/Main/RightSide2/RightLeg1")
 
 [node name="Line2D" type="Line2D" parent="Visuals/Arms/Path2D" unique_id=1184179276]
-points = PackedVector2Array(30.158047, -1.7250681, 32.97384, -0.6883974, 35.75314, 0.4396279, 38.472633, 1.705986, 41.07698, 3.1919603, 43.425495, 5.050997, 45.098362, 7.514337, 45.360317, 10.465104, 44.338963, 13.2894, 42.72548, 15.797622, 40.82416, 18.116552, 38.772808, 20.305273, 36.6322, 22.406633, 35.36992, 23.590002)
+points = PackedVector2Array(30.158047, -1.7250681, 30.12149, 1.2751136, 30.084938, 4.274846, 30.048384, 7.274528, 30.011833, 10.274239, 29.97528, 13.273915, 29.93873, 16.273712, 29.902174, 19.273443, 29.865623, 22.273157, 29.82907, 25.27288, 29.792517, 28.272642, 29.755964, 31.272306, 29.719412, 34.27203, 29.682861, 37.271797, 29.64631, 40.27156, 29.609755, 43.271423, 29.573202, 46.270977, 29.548832, 48.271233)
 default_color = Color(0.47058824, 0.29803923, 0.2784314, 1)
 script = ExtResource("12_3v2ag")
 resolution = 3.0
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Visuals/Arms/Path2D" unique_id=1799997338]
-position = Vector2(35.36992, 23.590002)
-rotation = 2.3953004
+[node name="FootAnchor" type="PathFollow2D" parent="Visuals/Arms/Path2D" unique_id=1799997338]
+position = Vector2(29.698336, 36.001812)
+rotation = 1.582981
 progress = 37.729725
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Visuals/Arms/Path2D" unique_id=849991693]
+position = Vector2(30.158047, -1.7250681)
+rotation = 1.582981
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D" unique_id=280271968]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D/DrawCanvas2" unique_id=263011642]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D/PathFollow2D/DrawCanvas2/DrawnShape" unique_id=1061471651]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Visuals/Arms/Path2D" unique_id=1524587074]
+position = Vector2(30.0362, 8.274363)
+rotation = 1.582981
+progress = 10.0
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D2" unique_id=1312708196]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D2/DrawCanvas2" unique_id=1437892014]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D/PathFollow2D2/DrawCanvas2/DrawnShape" unique_id=133889407]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Visuals/Arms/Path2D" unique_id=1145076869]
+position = Vector2(29.914356, 18.273497)
+rotation = 1.582981
+progress = 20.0
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D3" unique_id=1941782773]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D3/DrawCanvas2" unique_id=776798483]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D/PathFollow2D3/DrawCanvas2/DrawnShape" unique_id=798982733]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Visuals/Arms/Path2D" unique_id=883020537]
+position = Vector2(29.792517, 28.272642)
+rotation = 1.582981
+progress = 30.0
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D4" unique_id=719356642]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D4/DrawCanvas2" unique_id=1376202095]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D/PathFollow2D4/DrawCanvas2/DrawnShape" unique_id=1033879593]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Visuals/Arms/Path2D" unique_id=1173183281]
+position = Vector2(29.670675, 38.271782)
+rotation = 1.5829809
+progress = 40.0
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D5" unique_id=30597300]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D/PathFollow2D5/DrawCanvas2" unique_id=1730100604]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D/PathFollow2D5/DrawCanvas2/DrawnShape" unique_id=1471458419]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Path2D2" type="Path2D" parent="Visuals/Arms" unique_id=375029912 node_paths=PackedStringArray("body", "base", "arm_middle", "arm_end", "arm_middle_alt")]
 position = Vector2(-0.47536087, 0.3733034)
@@ -575,18 +701,137 @@ arm_end = NodePath("../../Body/Main/LeftSide/LeftLeg1/LeftLeg2")
 arm_middle_alt = NodePath("../../Body/Main/LeftSide/LeftLeg1")
 
 [node name="Line2D" type="Line2D" parent="Visuals/Arms/Path2D2" unique_id=1091567810]
-points = PackedVector2Array(-33.841953, -1.7250681, -36.582478, -0.50334597, -39.27699, 0.8137706, -41.900444, 2.2683723, -44.401474, 3.9234118, -46.677086, 5.873333, -48.51892, 8.231644, -49.601753, 11.015008, -49.750526, 14.000763, -49.159363, 16.936447, -48.110603, 19.745146, -46.789356, 22.438066, -45.299625, 25.041126, -43.69964, 27.578629, -42.84271, 28.868826)
+points = PackedVector2Array(-33.841953, -1.7250681, -33.80964, 1.2751621, -33.77732, 4.274943, -33.745014, 7.2746725, -33.7127, 10.274432, -33.680393, 13.274158, -33.648083, 16.274004, -33.61577, 19.273785, -33.58346, 22.273544, -33.551147, 25.273321, -33.518837, 28.273127, -33.486526, 31.272842, -33.454216, 34.272602, -33.421906, 37.27241, -33.38959, 40.27223, -33.357285, 43.272144, -33.32497, 46.271736, -33.30342, 48.272038)
 default_color = Color(0.47058824, 0.29803923, 0.2784314, 1)
 script = ExtResource("12_3v2ag")
 resolution = 3.0
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Visuals/Arms/Path2D2" unique_id=1219161966]
-position = Vector2(-42.84271, 28.868826)
-rotation = 0.9777809
+[node name="FootAnchor" type="PathFollow2D" parent="Visuals/Arms/Path2D2" unique_id=1219161966]
+position = Vector2(-33.405228, 38.820564)
+rotation = 1.5600256
 progress = 40.5482
 
+[node name="PathFollow2D" type="PathFollow2D" parent="Visuals/Arms/Path2D2" unique_id=202175519]
+position = Vector2(-33.841953, -1.7250681)
+rotation = 1.5600255
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D" unique_id=2095621955]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D/DrawCanvas2" unique_id=703377282]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D2/PathFollow2D/DrawCanvas2/DrawnShape" unique_id=563242872]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Visuals/Arms/Path2D2" unique_id=1036009849]
+position = Vector2(-33.73424, 8.274523)
+rotation = 1.5600256
+progress = 10.0
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D2" unique_id=1533815682]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D2/DrawCanvas2" unique_id=80784039]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D2/PathFollow2D2/DrawCanvas2/DrawnShape" unique_id=1552238244]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Visuals/Arms/Path2D2" unique_id=908204027]
+position = Vector2(-33.626537, 18.27382)
+rotation = 1.5600256
+progress = 20.0
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D3" unique_id=257967582]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D3/DrawCanvas2" unique_id=1527729480]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D2/PathFollow2D3/DrawCanvas2/DrawnShape" unique_id=106197700]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Visuals/Arms/Path2D2" unique_id=1147678417]
+position = Vector2(-33.518837, 28.273127)
+rotation = 1.5600256
+progress = 30.0
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D4" unique_id=1872333358]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D4/DrawCanvas2" unique_id=1418090774]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D2/PathFollow2D4/DrawCanvas2/DrawnShape" unique_id=322695637]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Visuals/Arms/Path2D2" unique_id=1339261011]
+position = Vector2(-33.41113, 38.27241)
+rotation = 1.5600256
+progress = 40.0
+loop = false
+
+[node name="DrawCanvas2" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D5" unique_id=1522071414]
+script = ExtResource("11_d2wvv")
+line_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+line_width = 12.73
+pressure_enabled = true
+metadata/_custom_type_script = "uid://cn5hmno4qie87"
+
+[node name="DrawnShape" type="Node2D" parent="Visuals/Arms/Path2D2/PathFollow2D5/DrawCanvas2" unique_id=66328792]
+
+[node name="Line" type="Line2D" parent="Visuals/Arms/Path2D2/PathFollow2D5/DrawCanvas2/DrawnShape" unique_id=1202274465]
+points = PackedVector2Array(-0.13383484, -5.269272, -0.13383484, -4.8019485, -0.13383484, -4.3346176, -0.13383484, -3.6336288, -0.13383484, -2.9326477, -0.13383484, -1.9979935, -0.13383484, -0.8296814, -0.13383484, 0.33863068, -0.13383484, 1.7406082, -0.13383484, 3.1425781, -0.13383484, 4.0772324, -0.13383484, 5.2455444)
+width = 12.73
+width_curve = SubResource("Curve_a8ls1")
+default_color = Color(0.5252652, 0.34589422, 0.29176575, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="Suction Cup" type="Node2D" parent="Visuals/Arms" unique_id=671035143]
-position = Vector2(-43.250153, 29.525017)
+position = Vector2(-33.77759, 49.30948)
 script = ExtResource("11_d2wvv")
 line_color = Color(0.9790785, 0.14307216, 0.23556513, 1)
 metadata/_custom_type_script = "uid://cn5hmno4qie87"
@@ -602,7 +847,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Suction Cup2" type="Node2D" parent="Visuals/Arms" unique_id=1975948952]
-position = Vector2(35.110825, 23.300827)
+position = Vector2(29.11554, 49.08058)
 script = ExtResource("11_d2wvv")
 line_color = Color(0.9790785, 0.14307216, 0.23556513, 1)
 metadata/_custom_type_script = "uid://cn5hmno4qie87"
@@ -620,6 +865,7 @@ end_cap_mode = 2
 [node name="DrawCanvas" type="Node2D" parent="Visuals" unique_id=463808440]
 position = Vector2(-2.3173141, -1.3517647)
 script = ExtResource("11_d2wvv")
+line_color = Color(0.47058824, 0.29803923, 0.2784314, 1)
 metadata/_custom_type_script = "uid://cn5hmno4qie87"
 
 [node name="DrawnShape" type="Node2D" parent="Visuals/DrawCanvas" unique_id=2092549227]
@@ -891,6 +1137,16 @@ end_cap_mode = 2
 [node name="DrawnShape33" type="Node2D" parent="Visuals/DrawCanvas" unique_id=645196705]
 
 [node name="DrawnShape34" type="Node2D" parent="Visuals/DrawCanvas" unique_id=392238633]
+
+[node name="DrawnShape35" type="Node2D" parent="Visuals/DrawCanvas" unique_id=1155514750]
+
+[node name="Line" type="Line2D" parent="Visuals/DrawCanvas/DrawnShape35" unique_id=177462038]
+points = PackedVector2Array(17.656593, -2.0966797, 17.657593, -2.0966797)
+width = 5.0
+default_color = Color(0.47058824, 0.29803923, 0.2784314, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="leftFootFollow" type="PathFollow2D" parent="Visuals" unique_id=487150171]
 

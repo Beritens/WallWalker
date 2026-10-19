@@ -8,25 +8,30 @@ var _update_pending := false
 		offset_distance = value
 		_request_update()
 
-# Called when the node enters the scene tree for the first time.
+var path: Path2D
+var _curve: Curve2D
+
+var polygon2d: Polygon2D
+
+var points: PackedVector2Array
+
+
+
 func _ready() -> void:
-	if not Engine.is_editor_hint():
+	polygon2d = $"../Polygon2D" as Polygon2D
+
+
+func _process(_delta: float) -> void:
+	set_process(Engine.is_editor_hint())
+	
+	if not is_instance_valid(polygon2d):
 		return
-	
-	var shape : SS2D_Shape = get_parent()
-	
-	if shape == null:
-		push_error("no shape")
-		return
-	
-	if not shape.points_modified.is_connected(_request_update):
-		shape.points_modified.connect(_request_update)
-		
-	_request_update()
-	
 
-
-
+	var new_points := polygon2d.polygon
+	if points != new_points:
+		points = new_points
+		_request_update()
+	
 
 func _request_update() -> void:
 	if not Engine.is_editor_hint() or not is_node_ready():
@@ -44,13 +49,8 @@ func _rebuild() -> void:
 	if not is_inside_tree():
 		return
 		
-	# sample shape
-	var shape : SS2D_Shape = get_parent()
 	
 	var generated_curve := Curve2D.new()
-	var geometry := shape.get_point_array()
-	
-	var points := geometry.get_curve().tessellate()
 	
 	
 	if points.size() > 1 and points[0].is_equal_approx(points[-1]):
