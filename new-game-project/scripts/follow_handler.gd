@@ -69,6 +69,7 @@ func _on_attach(collider: Object, vel: Vector2, pos: Vector2) -> void:
 	
 	
 	var right = pathFollow.global_transform.x.normalized()
+	print(right)
 	
 
 	
@@ -85,8 +86,11 @@ func _on_attach(collider: Object, vel: Vector2, pos: Vector2) -> void:
 	currentSpeed = max(pathFollowSpeed, abs(speed))
 	
 	
-	if dir.dot(vel.normalized()) < -0.0:
-		dir = vel.normalized()
+	#if dir.dot(vel.normalized()) < -0.0:
+		#dir = vel.normalized()
+
+	if currentSpeed > 400.0:
+		dir = vel.normalized() 
 		
 	
 	var dot = right.dot(-dir)

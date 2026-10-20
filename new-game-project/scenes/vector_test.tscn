@@ -16,7 +16,7 @@ script = ExtResource("1_mfcld")
 
 [node name="PhantomCamera2D" type="Node2D" parent="Node2D" unique_id=2015294588]
 top_level = true
-position = Vector2(540, 321)
+position = Vector2(35, 79)
 script = ExtResource("1_noyds")
 priority = 1
 follow_mode = 1
@@ -28,7 +28,7 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="Camera2D2" type="Camera2D" parent="Node2D" unique_id=1248618984]
 top_level = true
-position = Vector2(540, 321)
+position = Vector2(35, 79)
 zoom = Vector2(0.78, 0.78)
 editor_draw_limits = true
 

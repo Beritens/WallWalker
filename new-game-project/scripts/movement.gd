@@ -17,6 +17,7 @@ const JUMP_VELOCITY = -400.0
 @onready var playerSounds: PlayerSounds = $"../../Visuals/PlayerSounds"
 
 signal detach()
+signal collision_detected(collision: KinematicCollision2D)
 
 # if no path follower:
 # freefall: add gravity, move with velocity
@@ -42,11 +43,15 @@ func _physics_process(delta: float) -> void:
 	if !followHandler.is_attached():
 		body.velocity += body.get_gravity() * delta
 		body.move_and_slide()
+		for i in range(body.get_slide_collision_count()):
+			collision_detected.emit(body.get_slide_collision(i))
 		return
 		
 		
 	var target_position = target.global_position
-	body.move_and_collide(target_position - body.global_position)
+	var collision := body.move_and_collide(target_position - body.global_position)
+	if collision:
+		collision_detected.emit(collision)
 	
 	sprite.rotation = target.rotation
 	
@@ -66,7 +71,7 @@ func _physics_process(delta: float) -> void:
 		body.velocity += up * JUMP_VELOCITY
 		detach.emit()
 	
-	body.move_and_slide()
+
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -96,5 +101,5 @@ func _physics_process(delta: float) -> void:
 	
 	#body.move_and_slide()
 	
-func _on_attach(collider: Object, vel: Vector2) -> void:
+func _on_attach(collider: Object, vel: Vector2, pos: Vector2) -> void:
 	body.velocity = Vector2.ZERO
