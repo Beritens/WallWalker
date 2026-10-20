@@ -75,9 +75,12 @@ func _rebuild() -> void:
 			return
 	
 	var outline := polygons[0]
+	var count = 0
 	
 	for point in outline:
-		generated_curve.add_point(point)
+		if count == 0 or (point-generated_curve.get_point_position(count - 1)).length() > 0.01:
+			generated_curve.add_point(point)
+			count += 1
 	generated_curve.add_point(outline[0])
 	
 	curve = generated_curve

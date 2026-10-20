@@ -8,7 +8,7 @@ class_name CollisionHandler
 
 
 
-signal hit_walkable(collider: Object)
+signal hit_walkable(collider: Object, velocity: Vector2, position: Vector2)
 signal hit_death(collider: Object)
 
 var current: StaticBody2D
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		if collider.is_in_group("walkable"):
 			if collider != current:
 				current = collider
-				hit_walkable.emit(collider, last_vel)
+				hit_walkable.emit(collider, last_vel, collision.get_position())
 				current.set_collision_layer_value(1, false) 
 		if collider.is_in_group("death"):
 			print("test")

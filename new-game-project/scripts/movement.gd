@@ -14,6 +14,8 @@ const JUMP_VELOCITY = -400.0
 @export var source: Node
 @export var attach_signal: StringName
 
+@onready var playerSounds: PlayerSounds = $"../../Visuals/PlayerSounds"
+
 signal detach()
 
 # if no path follower:
@@ -53,6 +55,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
+		playerSounds.play_jump_sound()
 		followHandler.detach()
 		
 		var right = target.global_transform.x.normalized()

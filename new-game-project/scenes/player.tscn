@@ -14,6 +14,11 @@
 [ext_resource type="Script" uid="uid://cr61u7go0m3tg" path="res://scripts/path_renderer.gd" id="12_3v2ag"]
 [ext_resource type="Script" uid="uid://c1wlm18ov3bc7" path="res://scripts/player_animation.gd" id="12_f1ej7"]
 [ext_resource type="Script" uid="uid://b1ouji6c4g8c" path="res://scripts/arm_animator.gd" id="12_jej6c"]
+[ext_resource type="Script" uid="uid://dgaoeikmxi4vr" path="res://scripts/player_sounds.gd" id="15_oprun"]
+[ext_resource type="AudioStream" uid="uid://bvn757sg4bopu" path="res://sounds/suction1.wav" id="16_4r5pv"]
+[ext_resource type="AudioStream" uid="uid://g8jhsnjpk0n7" path="res://sounds/suction2.wav" id="17_60mlk"]
+[ext_resource type="AudioStream" uid="uid://o3r1pwjad7nl" path="res://sounds/suction3.wav" id="18_i4ail"]
+[ext_resource type="AudioStream" uid="uid://c1w13monawrwt" path="res://sounds/suction4.wav" id="19_a38lo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yo5px"]
 animations = [{
@@ -1179,3 +1184,9 @@ visible = false
 scale = Vector2(0.15068743, 0.14225735)
 sprite_frames = SubResource("SpriteFrames_yo5px")
 animation = &"up"
+
+[node name="PlayerSounds" type="Node" parent="Visuals" unique_id=86834648]
+script = ExtResource("15_oprun")
+walk_db = -10.0
+walk_sounds = Array[AudioStream]([ExtResource("16_4r5pv"), ExtResource("17_60mlk"), ExtResource("18_i4ail"), ExtResource("19_a38lo")])
+jump_sounds = Array[AudioStream]([ExtResource("17_60mlk"), ExtResource("18_i4ail")])

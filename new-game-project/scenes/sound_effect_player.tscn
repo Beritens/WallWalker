@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c51u4v400eqio"]
+
+[ext_resource type="Script" uid="uid://tv7uytqowmmt" path="res://scripts/sound_effect_player.gd" id="1_j4mq1"]
+
+[node name="SoundEffectPlayer" type="Node" unique_id=878802051]
+script = ExtResource("1_j4mq1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1377678659]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=490784052]
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." unique_id=32195644]
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="." unique_id=1430652149]
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="." unique_id=168058806]
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="." unique_id=1308126568]

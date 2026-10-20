@@ -32,6 +32,9 @@ var right_foot_was_active = true
 var _was_attached := false
 
 
+@onready var playerSounds: PlayerSounds = $"PlayerSounds"
+
+
 # This node runs after Movement in the player scene. Keep both physics poses
 # so the render-frame rig (and the camera following main) can move between ticks.
 func _physics_process(_delta: float) -> void:
@@ -76,20 +79,25 @@ func _process(delta: float) -> void:
 		elif (leftFollow.global_position - leftFollowTarget.global_position).length() > fooDistance and right_foot_active:
 			right_foot_active = false
 		
-		print(right_foot_active)
 		
 		
 		var weight := 1.0 - exp(-0.99 * delta)
+		var playSound = false
 		if right_foot_active:
 			if(not right_foot_was_active):
 				leftFollow.progress = leftFollowTarget.progress
+				playSound = true
 			rightFollow.progress = lerpf(rightFollow.progress, rightFollowTarget.progress, weight)
 		else:
 			if(right_foot_was_active):
 				rightFollow.progress = rightFollowTarget.progress
+				#playSound = true
 			leftFollow.progress = lerpf(leftFollow.progress, leftFollowTarget.progress, weight)
 			
 		right_foot_was_active = right_foot_active
+		
+		if(playSound):
+			playerSounds.play_walk_sound()
 		
 		if(new):
 			leftFollow.progress = leftFollowTarget.progress

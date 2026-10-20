@@ -52,13 +52,23 @@ func _process(delta: float) -> void:
 		var weight := 1.0 - exp(-slowdownSmoothing * delta)
 		currentSpeed = lerpf(currentSpeed, pathFollowSpeed, weight)
 
-func _on_attach(collider: Object, vel: Vector2) -> void:
+func _on_attach(collider: Object, vel: Vector2, pos: Vector2) -> void:
 	
 	
 	
 	var path = collider.get_parent().get_node("Path2D") as Path2D
+	var groundPath = path.get_parent() as Path2D
 	var local_point = path.to_local(body.global_position)
 	var progress = path.curve.get_closest_offset(local_point)
+	
+	var local_ground_point = groundPath.to_local(pos)
+	var groundProgress = groundPath.curve.get_closest_offset(local_ground_point)
+	
+	pathFollow.reparent(groundPath)
+	pathFollow.progress = groundProgress
+	
+	
+	var right = pathFollow.global_transform.x.normalized()
 	
 
 	
@@ -68,7 +78,7 @@ func _on_attach(collider: Object, vel: Vector2) -> void:
 	
 	
 	
-	var right = pathFollow.global_transform.x.normalized()
+	
 	var dir = jump_vel.normalized()
 	
 	var speed = right.dot(vel)
