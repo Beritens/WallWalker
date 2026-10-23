@@ -69,7 +69,6 @@ func _on_attach(collider: Object, vel: Vector2, pos: Vector2) -> void:
 	
 	
 	var right = pathFollow.global_transform.x.normalized()
-	print(right)
 	
 
 	
@@ -107,9 +106,7 @@ func _on_attach(collider: Object, vel: Vector2, pos: Vector2) -> void:
 func is_attached() -> bool:
 	return attached
 	
-func detach() -> void:
-	var up = pathFollow.global_transform.y.normalized() * JUMP_VELOCITY
-	var right = pathFollow.global_transform.x.normalized() * direction * currentSpeed
-	var dir = (up + right)
+func detach(dir: Vector2) -> void:
+
 	jump_vel = dir
 	attached = false

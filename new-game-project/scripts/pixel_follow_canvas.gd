@@ -22,6 +22,5 @@ func _process(delta: float) -> void:
 	var targetPos = target.position
 	var px = floorf(targetPos.x / (pixelSize/zoom)) * (pixelSize/zoom)
 	var py = floorf(targetPos.y / (pixelSize/zoom)) * (pixelSize/zoom)
-	print(targetPos)
 	position = Vector2(px-size.x/2,py-size.y/2)
 	pass

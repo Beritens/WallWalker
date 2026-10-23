@@ -16,7 +16,10 @@ func _ready() -> void:
 	path = get_parent() as Path2D
 	_sync_curve()
 	_on_parent_points_change()
-
+	
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "polygon":
+		property.usage &= ~PROPERTY_USAGE_STORAGE
 
 func _process(_delta: float) -> void:
 	# Also handle replacing or clearing the entire Curve2D resource.

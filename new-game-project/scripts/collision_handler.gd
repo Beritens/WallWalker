@@ -52,6 +52,6 @@ func _physics_process(delta: float) -> void:
 	pending_collisions.clear()
 	last_vel = body.velocity
 			
-func _on_detach() -> void:
+func _on_detach(dir: Vector2) -> void:
 	current.set_collision_layer_value(1, true) 
 	current = null

@@ -13,10 +13,11 @@ const JUMP_VELOCITY = -400.0
 
 @export var source: Node
 @export var attach_signal: StringName
+var attached := false
 
 @onready var playerSounds: PlayerSounds = $"../../Visuals/PlayerSounds"
 
-signal detach()
+signal detach(dir:Vector2)
 signal collision_detected(collision: KinematicCollision2D)
 
 # if no path follower:
@@ -61,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
 		playerSounds.play_jump_sound()
-		followHandler.detach()
+		
 		
 		var right = target.global_transform.x.normalized()
 		var up = target.global_transform.y.normalized()
@@ -69,8 +70,11 @@ func _physics_process(delta: float) -> void:
 		body.velocity = Vector2.ZERO
 		body.velocity += right * followHandler.currentSpeed * followHandler.direction
 		body.velocity += up * JUMP_VELOCITY
-		detach.emit()
+		followHandler.detach(body.velocity)
+		detach.emit(body.velocity)
+		attached = false
 	
+
 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -103,3 +107,10 @@ func _physics_process(delta: float) -> void:
 	
 func _on_attach(collider: Object, vel: Vector2, pos: Vector2) -> void:
 	body.velocity = Vector2.ZERO
+	attached = true
+	
+func push(vec: Vector2) -> void:
+	if attached:
+		followHandler.detach(vec)
+		detach.emit(vec)
+	body.velocity = vec

@@ -58,7 +58,9 @@ func _process(delta: float) -> void:
 		
 		
 			
-		main.global_rotation = mainFollow.global_rotation
+		#main.global_rotation = mainFollow.global_rotation
+		var rotation_weight := 1.0 - exp(-20.0 * delta)
+		main.global_rotation = lerp_angle(main.global_rotation, mainFollow.global_rotation, rotation_weight)
 		var new = false
 		if(mainFollow.get_parent() != rightFollow.get_parent() or groundPath == null):
 			new = true

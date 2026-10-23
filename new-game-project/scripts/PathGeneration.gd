@@ -19,7 +19,14 @@ var points: PackedVector2Array
 
 func _ready() -> void:
 	polygon2d = $"../Polygon2D" as Polygon2D
+	_update_pending = true
+	var new_points := polygon2d.polygon
+	points = new_points
+	_rebuild()
 
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "curve":
+		property.usage &= ~PROPERTY_USAGE_STORAGE
 
 func _process(_delta: float) -> void:
 	set_process(Engine.is_editor_hint())
@@ -44,6 +51,7 @@ func _request_update() -> void:
 	_rebuild.call_deferred()
 
 func _rebuild() -> void:
+	
 	_update_pending = false
 	
 	if not is_inside_tree():
@@ -51,7 +59,6 @@ func _rebuild() -> void:
 		
 	
 	var generated_curve := Curve2D.new()
-	
 	
 	if points.size() > 1 and points[0].is_equal_approx(points[-1]):
 		points.remove_at(points.size() - 1)
@@ -84,6 +91,7 @@ func _rebuild() -> void:
 	generated_curve.add_point(outline[0])
 	
 	curve = generated_curve
+	
 	
 	
 	# get offset polygon

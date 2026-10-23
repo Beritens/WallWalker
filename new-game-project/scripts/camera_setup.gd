@@ -11,10 +11,8 @@ func _ready() -> void:
 	
 	
 	for node:PixelFollow in get_tree().root.find_children("*", "PixelFollow", true, false):
-		print("test")
 		node.setup($Camera2D2, pixelSize, zoom)
 	for node:PixelFollowCanvas in get_tree().root.find_children("*", "PixelFollowCanvas", true, false):
-		print("test2")
 		node.setup($Camera2D2, pixelSize, zoom)
 	
 	var player := get_tree().get_first_node_in_group("player")

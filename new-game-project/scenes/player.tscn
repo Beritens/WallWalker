@@ -202,7 +202,8 @@ point_count = 12
 
 [node name="Player" type="Node2D" unique_id=1003271293]
 
-[node name="PlayerObject" type="CharacterBody2D" parent="." unique_id=1624797]
+[node name="PlayerObject" type="CharacterBody2D" parent="." unique_id=1624797 groups=["PlayerBody", "playerBody"]]
+collision_layer = 3
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerObject" unique_id=7927655]

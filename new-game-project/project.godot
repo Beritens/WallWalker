@@ -34,6 +34,8 @@ enabled=PackedStringArray("res://addons/drawingodot/plugin.cfg", "res://addons/p
 walkable=""
 death=""
 player=""
+path=""
+playerBody=""
 
 [input]
 
